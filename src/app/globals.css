@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: var(--font-baloo), var(--font-hind), sans-serif;
+  --font-body: var(--font-hind), sans-serif;
+  --font-hand: var(--font-atma), var(--font-hind), cursive;
+}
+
+@theme {
+  --color-paper: #f1e6cc;
+  --color-paper-2: #e9dbbb;
+  --color-card: #f9f2e2;
+  --color-line: #dccba8;
+  --color-ink: #1e2a23;
+  --color-ink-2: #47503f;
+  --color-ink-3: #6a6450;
+  --color-leaf: #1e4a38;
+  --color-leaf-2: #163a2c;
+  --color-leaf-soft: #dce6d6;
+  --color-brick: #c4232c;
+  --color-brick-2: #a01b23;
+  --color-marker: #f2c230;
+  --color-ink-blue: #2b4a8b;
+  --color-mustard: #e4a72b;
+  --color-skeleton: #e3d6b8;
+  --ease-brand: cubic-bezier(0.65, 0, 0.35, 1);
+  --site-container-width: 1200px;  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .32 0 0 0 0 .16 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.site-container {
+  @apply relative z-[1] mx-auto w-full;
+  max-width: var(--site-container-width);
+}
+
+@layer base {
+  body {
+    background:
+      var(--grain),
+      radial-gradient(1200px 600px at 20% 10%, #f6edd7, transparent 70%),
+      radial-gradient(900px 700px at 90% 80%, #eadbb9, transparent 70%),
+      var(--color-paper);
+    @apply overflow-x-hidden font-body text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-marker text-ink;
+  }
+}
+
+/* Paper sheet with grain and a soft lifted shadow */
+@utility paper {
+  background: var(--grain), var(--color-card);
+  border-radius: 4px 7px 5px 8px;
+  box-shadow:
+    0 1px 0 rgb(120 90 40 / 0.15),
+    0 14px 30px -18px rgb(90 60 20 / 0.45);
+}
+
+/* Torn bottom edge: the strip keeps the paper above the zigzag and cuts away everything below it */
+@utility torn {
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 10' preserveAspectRatio='none'%3E%3Cpath d='M0 0H60V6l-5-3-4 2-5-3-4 3-5-2-4 3-6-4-5 4-3-3-6 2-4-3-5 4-4-2z'/%3E%3C/svg%3E") bottom / 56px 9px repeat-x,
+    linear-gradient(#000, #000) top / 100% calc(100% - 8px) no-repeat;
+}
+
+/* Yellow brush-marker stroke behind a word */
+@utility brush {
+  position: relative;
+  display: inline-block;
+  padding: 0.04em 0.3em 0;
+  isolation: isolate;
+
+  /* Bangla matras and vowel signs sit high, so the stroke runs from above the cap line to the baseline */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -0.06em -0.06em -0.02em;
+    z-index: -1;
+    background: var(--brush-color, var(--color-marker));
+    transform: rotate(-1.5deg);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50' preserveAspectRatio='none'%3E%3Cpath d='M4 10C60 4 140 2 196 6L193 14 198 21 194 30 196 40C140 46 60 47 10 45L2 47 5 39 0 33 4 24 0 16Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  }
+}
+
+/* Rickshaw-flower frame for the ID card */
+@utility frame-rickshaw {
+  border-style: solid;
+  border-color: transparent;
+  border-width: 44px 44px 30px;
+  border-image: url("/decor/frame-rickshaw.jpg") 60 44 30 44 stretch;
+  background: #f8eed6 padding-box;
+
+  @media (width < 40rem) {
+    border-width: 34px 34px 24px;
+  }
+}
+
+/* School notebook: ruled lines, red margin, punched holes */
+@utility frame-notebook {
+  background:
+    linear-gradient(90deg, transparent 46px, #e9a3a0 46px 48px, transparent 48px),
+    repeating-linear-gradient(#fbf8f0 0 27px, #bcd0e8 27px 28px);
+  background-color: #fbf8f0;
+  padding-left: 62px;
+  border-radius: 3px;
+  box-shadow: 0 14px 30px -16px rgb(60 40 10 / 0.5);
+}
+
+@utility frame-postcard {
+  background: var(--grain), radial-gradient(circle at 30% 20%, #f2e3c0, #e2cb9c);
+  border-radius: 4px;
+  box-shadow: 0 14px 30px -16px rgb(60 40 10 / 0.5);
+}
