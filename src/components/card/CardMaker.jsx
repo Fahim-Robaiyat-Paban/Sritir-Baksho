@@ -23,6 +23,8 @@ const themeSwatches = {
   notebook: "bg-[linear-gradient(90deg,transparent_10px,#e9a3a0_10px_11px,transparent_11px),repeating-linear-gradient(#fbf8f0_0_7px,#bcd0e8_7px_8px)]",
   rickshaw: "bg-[url('/decor/frame-rickshaw.jpg')] bg-cover bg-center",
   postcard: "bg-[radial-gradient(circle_at_30%_20%,#f2e3c0,#d9c08e)]",
+  slate: "bg-[radial-gradient(circle_at_30%_20%,#3d4a44,#232c28)] border-4 border-[#a8713f]",
+  thonga: "bg-[repeating-linear-gradient(#ebe1c9_0_4px,#c9bb9a_4px_5px)]",
 };
 
 // One slam-book line: a dotted rule to write on, answers show up in blue handwriting

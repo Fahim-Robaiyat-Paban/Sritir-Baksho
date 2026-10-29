@@ -17,6 +17,8 @@ export const cardThemes = [
   { id: "notebook", label: "স্কুল নোটবুক" },
   { id: "rickshaw", label: "রঙিন রিকশা ফুল" },
   { id: "postcard", label: "পুরনো পোস্টকার্ড" },
+  { id: "slate", label: "স্কুলের স্লেট" },
+  { id: "thonga", label: "খবরের কাগজের ঠোঙা" },
 ];
 
 export const cardInks = [
